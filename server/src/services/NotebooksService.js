@@ -25,7 +25,7 @@ class NotebooksService {
     return originalNotebook
   }
   async getNotebookById(notebookId) {
-    const notebook = await dbContext.NoteBooks.findById(notebookId).populate('creator', 'name picture')
+    const notebook = await dbContext.NoteBooks.findById(notebookId).populate('creator', 'name picture').populate('entryCount')
     return notebook
   }
   async getAllMyNotebooks(userId) {
