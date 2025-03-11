@@ -8,6 +8,7 @@ export class EntriesController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createEntry)
+      .get('', this.getMyEntries)
   }
 
   async createEntry(request, response, next) {
@@ -20,4 +21,15 @@ export class EntriesController extends BaseController {
       next(error)
     }
   }
+
+  async getMyEntries(request, response, next) {
+    try {
+      const userId = request.userInfo.id
+      const entries = await entriesService.getMyEntries(userId)
+      response.send(entries)
+    } catch (error) {
+      next(error)
+    }
+  }
+
 }
