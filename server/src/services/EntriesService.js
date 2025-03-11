@@ -2,6 +2,15 @@ import { dbContext } from "../db/DbContext.js"
 import { Forbidden } from "../utils/Errors.js"
 
 class EntriesService {
+  async deleteEntry(entryId, userId) {
+    const entryToDelete = await dbContext.Entries.findById(entryId)
+
+    if (entryToDelete == null) throw new Error(`Invalid entry id: ${entryId}`)
+    if (entryToDelete.creatorId != userId) throw new Forbidden("YOU CANT DELETE THAT ENTRY ITS NOT YOURS, HONEY PIE")
+
+    await entryToDelete.deleteOne()
+    return 'Entry has been deleted!'
+  }
   async editEntry(entryId, userId, updataData) {
     const originalEntry = await dbContext.Entries.findById(entryId)
 

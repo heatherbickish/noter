@@ -10,6 +10,7 @@ export class EntriesController extends BaseController {
       .post('', this.createEntry)
       .get('', this.getMyEntries)
       .put('/:entryId', this.editEntry)
+      .delete('/:entryId', this.deleteEntry)
   }
 
   async createEntry(request, response, next) {
@@ -40,6 +41,17 @@ export class EntriesController extends BaseController {
       const updataData = request.body
       const updatedEntry = await entriesService.editEntry(entryId, userId, updataData)
       response.send(updatedEntry)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async deleteEntry(request, response, next) {
+    try {
+      const entryId = request.params.entryId
+      const userId = request.userInfo.id
+      const message = await entriesService.deleteEntry(entryId, userId)
+      response.send(message)
     } catch (error) {
       next(error)
     }
