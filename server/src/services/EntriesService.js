@@ -1,6 +1,10 @@
 import { dbContext } from "../db/DbContext.js"
 
 class EntriesService {
+  async getNotebookEntries(notebookId) {
+    const entries = await dbContext.Entries.find({ notebookId: notebookId })
+    return entries
+  }
   async getMyEntries(userId) {
     const entries = await dbContext.Entries.find({ creatorId: userId }).populate('notebook')
     return entries
