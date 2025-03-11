@@ -1,10 +1,10 @@
 import mongoose from 'mongoose'
 import { AccountSchema } from '../models/Account.js'
-import { ValueSchema } from '../models/Value.js'
+import { NotebookSchema } from "../models/Notebook.js";
 
 class DbContext {
-  Values = mongoose.model('Value', ValueSchema);
   Account = mongoose.model('Account', AccountSchema);
+  NoteBooks = mongoose.model('Notebook', NotebookSchema);
 }
 
 export const dbContext = new DbContext()
