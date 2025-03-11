@@ -9,6 +9,7 @@ export class EntriesController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createEntry)
       .get('', this.getMyEntries)
+      .put('/:entryId', this.editEntry)
   }
 
   async createEntry(request, response, next) {
@@ -27,6 +28,18 @@ export class EntriesController extends BaseController {
       const userId = request.userInfo.id
       const entries = await entriesService.getMyEntries(userId)
       response.send(entries)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async editEntry(request, response, next) {
+    try {
+      const entryId = request.params.entryId
+      const userId = request.userInfo.id
+      const updataData = request.body
+      const updatedEntry = await entriesService.editEntry(entryId, userId, updataData)
+      response.send(updatedEntry)
     } catch (error) {
       next(error)
     }
