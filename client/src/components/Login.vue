@@ -25,7 +25,7 @@ function logout() {
         <div role="button" class="selectable no-select" data-bs-toggle="dropdown" aria-expanded="false"
           title="open account menu">
           <div v-if="account?.picture || identity?.picture" class="d-flex align-items-center gap-2">
-            <span class="text-light">{{ account.name }}</span>
+            <span class="text-light">{{ account?.name }}</span>
             <img :src="account?.picture || identity?.picture" alt="account photo" height="40" class="user-img" />
           </div>
         </div>

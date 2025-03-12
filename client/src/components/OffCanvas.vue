@@ -1,4 +1,20 @@
 <script setup>
+import { notesbooksService } from "@/services/NotebooksService.js";
+import { logger } from "@/utils/Logger.js";
+import { onMounted } from "vue";
+
+
+onMounted(() => {
+  getAllMyNotebooks()
+})
+
+async function getAllMyNotebooks() {
+  try {
+    await notesbooksService.getAllMyNotebooks()
+  } catch (error) {
+    logger.error(error)
+  }
+}
 
 </script>
 
@@ -34,6 +50,10 @@
             <button class="btn btn-danger"><em><b>Create Notebook</b></em></button>
           </div>
         </form>
+        <div class="mt-5 d-flex align-items-baseline justify-content-between notebook-line">
+          <h5><i class="mdi mdi-apple"></i>CSS Tricks</h5>
+          <p><span>4</span> Entries <i class="mdi mdi-apple"></i></p>
+        </div>
       </div>
     </div>
   </div>
@@ -43,5 +63,10 @@
 <style lang="scss" scoped>
 .offcanvas {
   opacity: 0.7;
+}
+
+.notebook-line {
+  border-bottom: 1.6px solid rgb(116, 112, 112);
+
 }
 </style>
