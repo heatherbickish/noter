@@ -7,14 +7,19 @@ import Example from '@/components/Example.vue';
 <template>
   <section class="container-fluid">
     <div class="row">
-      <div class="col">
+      <div class="col-md-12">
+        <div>
+          <button class="btn bg-warning fw-bold text-light py-2">
+            <i class="mdi mdi-notebook-outline text-light fs-5"></i>
+            Notebooks
+          </button>
+        </div>
         <div class="img-container">
-          <span class="bear-text text-light text-center p-4">Time to chew bubble gum <br> and take notes,
-            and I'm
-            <br> all out
-            of
-            bubble
-            gum.</span>
+          <span class="bear-text text-light text-center p-4">
+            Time to chew bubble gum
+            <br> and take notes, and I'm
+            <br> all out of bubblegum.
+          </span>
           <img src="/public/img/bear.png" alt="" class="">
         </div>
       </div>
@@ -45,5 +50,9 @@ img {
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+button {
+  border-radius: 13px;
 }
 </style>
