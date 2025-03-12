@@ -2,7 +2,7 @@
 import { AppState } from "@/AppState.js";
 import { notesbooksService } from "@/services/NotebooksService.js";
 import { logger } from "@/utils/Logger.js";
-import { computed, onMounted, watch } from "vue";
+import { computed, watch } from "vue";
 
 
 const account = computed(() => AppState.account)
@@ -57,7 +57,11 @@ async function getAllMyNotebooks() {
         </form>
         <div v-for="notebook in notebooks" :key="notebook.id"
           class="mt-5 d-flex align-items-baseline justify-content-between notebook-line">
-          <h5><i :class="'mdi ' + notebook.icon" :style="{ color: notebook.color }"></i>{{ notebook.title }}</h5>
+          <router-link :to="{ name: 'Notebook Details', params: { notebookId: notebook.id } }">
+            <h5 class="text-dark" data-bs-dismiss="offcanvas"><i :class="'mdi ' + notebook.icon"
+                :style="{ color: notebook.color }"></i>{{
+                  notebook.title }}</h5>
+          </router-link>
           <p><span>{{ notebook.entryCount }}</span> Entries <i class="mdi mdi-apple"></i></p>
         </div>
       </div>
@@ -73,6 +77,9 @@ async function getAllMyNotebooks() {
 
 .notebook-line {
   border-bottom: 1.6px solid rgb(116, 112, 112);
+}
 
+a {
+  text-decoration: none;
 }
 </style>
