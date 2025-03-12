@@ -1,5 +1,5 @@
 <script setup>
-import OffCanvas from "@/components/OffCanvas.vue";
+// import OffCanvas from "@/components/OffCanvas.vue";
 
 
 
@@ -9,13 +9,13 @@ import OffCanvas from "@/components/OffCanvas.vue";
   <section class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <div>
+        <!-- <div>
           <button class="btn bg-warning fw-bold text-light py-2" type="button" data-bs-toggle="offcanvas"
             data-bs-target="#offcanvas" aria-controls="offcanvas">
             <i class="mdi mdi-notebook-outline text-light fs-5"></i>
             Notebooks
           </button>
-        </div>
+        </div> -->
         <div class="img-container">
           <span class="bear-text text-light text-center p-4">
             Time to chew bubble gum
@@ -26,7 +26,7 @@ import OffCanvas from "@/components/OffCanvas.vue";
         </div>
       </div>
     </div>
-    <OffCanvas />
+    <!-- <OffCanvas /> -->
   </section>
 </template>
 

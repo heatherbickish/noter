@@ -1,10 +1,13 @@
 <script setup>
+import { AppState } from "@/AppState.js";
 import { notesbooksService } from "@/services/NotebooksService.js";
 import { logger } from "@/utils/Logger.js";
-import { onMounted } from "vue";
+import { computed, onMounted, watch } from "vue";
 
 
-onMounted(() => {
+const account = computed(() => AppState.account)
+
+watch(account, () => {
   getAllMyNotebooks()
 })
 
