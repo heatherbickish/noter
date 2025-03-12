@@ -2,7 +2,7 @@
 import { AppState } from "@/AppState.js";
 import { notesbooksService } from "@/services/NotebooksService.js";
 import { logger } from "@/utils/Logger.js";
-import { computed, onMounted } from "vue";
+import { computed, watch } from "vue";
 import { useRoute } from "vue-router";
 
 
@@ -10,9 +10,10 @@ const route = useRoute()
 const account = computed(() => AppState.account)
 const notebook = computed(() => AppState.activeNotebook)
 
-onMounted(() => {
+watch(route, () => {
   getNotebookById()
 })
+
 
 async function getNotebookById() {
   try {
@@ -38,10 +39,16 @@ async function getNotebookById() {
             <div class="card-body bg-dark text-light">
               <div class="d-flex align-items-baseline justify-content-between">
                 <p>Created by {{ notebook.creator.name }}</p>
-                <h4>{{ notebook.title }}</h4>
+                <div class="title-icon-container">
+                  <h1><i :class="'mdi ' + notebook.icon" :style="{ color: notebook.color }"></i></h1>
+                  <div :style="{ backgroundColor: notebook.color }" class="px-5 py-2 rounded">
+                    <h4>{{ notebook.title }}</h4>
+                  </div>
+
+                </div>
               </div>
               <div class="flex-container">
-                <div class="">
+                <div>
                   <p>Created {{ notebook.createdAt.toLocaleDateString() }}</p>
                   <p>Last updated {{ notebook.updatedAt.toLocaleDateString() }}</p>
                 </div>
@@ -77,5 +84,17 @@ async function getNotebookById() {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+}
+
+.card {
+  position: relative;
+}
+
+.title-icon-container {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 </style>
