@@ -1,13 +1,45 @@
-<script setup >
+<script setup>
 import Example from '@/components/Example.vue';
 
 
 </script>
 
 <template>
-  <Example />
+  <section class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="img-container">
+          <span class="bear-text border rounded text-light text-center p-2">Time to chew bubble gum <br> and take notes,
+            and I'm
+            <br> all out
+            of
+            bubble
+            gum.</span>
+          <img src="/public/img/bear.png" alt="" class="">
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <style scoped lang="scss">
+.img-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: 35rem;
+}
 
+.bear-text {
+  margin-top: 15rem;
+  margin-right: 18rem;
+  text-align: right;
+}
+
+img {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
 </style>

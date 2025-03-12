@@ -18,9 +18,9 @@ import Login from './Login.vue';
 
 <template>
   <nav class="navbar navbar-expand-md">
-    <div class="container-fluid">
-      <router-link :to="{ name: 'Home' }" class="d-flex align-items-center justify-content-center text-dark">
-        <div class="d-flex align items-center">
+    <div class="container-fluid d-flex  justify-content-center">
+      <router-link :to="{ name: 'Home' }" class="text-dark">
+        <div class="d-flex align-items-center">
           <b class="fs-3">Noter</b>
           <span><i class="mdi mdi-fountain-pen-tip fs-1"></i></span>
         </div>
