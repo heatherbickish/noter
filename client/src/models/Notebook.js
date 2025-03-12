@@ -5,6 +5,7 @@ export class Notebook {
     this.updatedAt = new Date(data.updatedAt)
     this.title = data.title
     this.icon = data.icon
+    this.color = data.color
     this.coverImg = data.coverImg
     this.creatorId = data.creatorId
     this.creator = data.creator

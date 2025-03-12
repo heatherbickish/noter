@@ -6,6 +6,7 @@ import { computed, onMounted, watch } from "vue";
 
 
 const account = computed(() => AppState.account)
+const notebooks = computed(() => AppState.notebooks)
 
 watch(account, () => {
   getAllMyNotebooks()
@@ -50,11 +51,13 @@ async function getAllMyNotebooks() {
             <input type="url" class="form-control" id="coverImg">
           </div>
           <div class="text-end">
-            <button class="btn btn-danger"><em><b>Create Notebook</b></em></button>
+            <button class="btn btn-danger" type="submit" title="Create Notebook">
+              <em><b>Create Notebook</b></em></button>
           </div>
         </form>
-        <div class="mt-5 d-flex align-items-baseline justify-content-between notebook-line">
-          <h5><i class="mdi mdi-apple"></i>CSS Tricks</h5>
+        <div v-for="notebook in notebooks" :key="notebook.id"
+          class="mt-5 d-flex align-items-baseline justify-content-between notebook-line">
+          <h5><i :class="'mdi ' + notebook.icon" :style="{ color: notebook.color }"></i>{{ notebook.title }}</h5>
           <p><span>4</span> Entries <i class="mdi mdi-apple"></i></p>
         </div>
       </div>
