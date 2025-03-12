@@ -9,7 +9,7 @@ import Example from '@/components/Example.vue';
     <div class="row">
       <div class="col">
         <div class="img-container">
-          <span class="bear-text border rounded text-light text-center p-2">Time to chew bubble gum <br> and take notes,
+          <span class="bear-text text-light text-center p-4">Time to chew bubble gum <br> and take notes,
             and I'm
             <br> all out
             of
@@ -32,9 +32,13 @@ import Example from '@/components/Example.vue';
 }
 
 .bear-text {
-  margin-top: 15rem;
+  margin-top: 12rem;
   margin-right: 18rem;
   text-align: right;
+  border: 2px solid rgb(231, 225, 225);
+  border-radius: 30px;
+  border-bottom-right-radius: 0;
+  text-shadow: 1px 1px rgb(10, 10, 10);
 }
 
 img {
