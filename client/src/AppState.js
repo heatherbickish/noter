@@ -8,5 +8,7 @@ export const AppState = reactive({
   account: null,
   /** @type {import('./models/Notebook.js').Notebook[]} user info from the database*/
   notebooks: [],
+  /** @type {import('./models/Notebook.js').Notebook} user info from the database*/
+  activeNotebook: null,
 })
 
