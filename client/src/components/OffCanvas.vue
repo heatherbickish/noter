@@ -58,7 +58,7 @@ async function getAllMyNotebooks() {
         <div v-for="notebook in notebooks" :key="notebook.id"
           class="mt-5 d-flex align-items-baseline justify-content-between notebook-line">
           <h5><i :class="'mdi ' + notebook.icon" :style="{ color: notebook.color }"></i>{{ notebook.title }}</h5>
-          <p><span>4</span> Entries <i class="mdi mdi-apple"></i></p>
+          <p><span>{{ notebook.entryCount }}</span> Entries <i class="mdi mdi-apple"></i></p>
         </div>
       </div>
     </div>
