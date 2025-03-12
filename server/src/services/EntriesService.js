@@ -35,6 +35,8 @@ class EntriesService {
   async createEntry(entryData) {
     const entry = await dbContext.Entries.create(entryData)
     await entry.populate('notebook')
+
+    if (entryData.notebookId) throw new Forbidden("YOU CANT ADD AN ENTRY TO A NOTEBOOK THATS NOT YOURS, BUD")
     return entry
   }
 
