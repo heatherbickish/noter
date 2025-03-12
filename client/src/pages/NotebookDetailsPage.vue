@@ -1,4 +1,24 @@
 <script setup>
+import { notesbooksService } from "@/services/NotebooksService.js";
+import { logger } from "@/utils/Logger.js";
+import { onMounted } from "vue";
+import { useRoute } from "vue-router";
+
+
+const route = useRoute()
+
+onMounted(() => {
+  getNotebookById()
+})
+
+async function getNotebookById() {
+  try {
+    const notebookId = route.params.notebookId
+    await notesbooksService.getNotebookById(notebookId)
+  } catch (error) {
+    logger.error(error)
+  }
+}
 
 </script>
 
@@ -27,8 +47,9 @@
                 <p>13 Entries</p>
                 <button class="btn btn-outline-light px-5 text-light me-2">Edit</button>
                 <button class="btn btn-outline-light px-5 text-light me-2">Delete</button>
-                <button class="btn btn-primary px-5 text-light"><i
-                    class="mdi mdi-plus-box-outline me-1"></i>New</button>
+                <button class="btn btn-primary px-5 text-light">
+                  <i class="mdi mdi-plus-box-outline me-1"></i>New
+                </button>
               </div>
             </div>
           </div>

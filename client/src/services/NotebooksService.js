@@ -8,10 +8,13 @@ class NotebooksService {
 
   async getAllMyNotebooks() {
     const response = await api.get('api/notebooks')
-    logger.log('Got notebooks', response.data)
     AppState.notebooks = response.data.map(notebook => new Notebook(notebook))
   }
 
+  async getNotebookById(notebookId) {
+    const response = await api.get(`api/notebooks/${notebookId}`)
+    logger.log('Got notebook by id', response.data)
+  }
 }
 
 export const notesbooksService = new NotebooksService()
