@@ -1,5 +1,6 @@
 <script setup>
-import Example from '@/components/Example.vue';
+import OffCanvas from "@/components/OffCanvas.vue";
+
 
 
 </script>
@@ -9,7 +10,8 @@ import Example from '@/components/Example.vue';
     <div class="row">
       <div class="col-md-12">
         <div>
-          <button class="btn bg-warning fw-bold text-light py-2">
+          <button class="btn bg-warning fw-bold text-light py-2" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvas" aria-controls="offcanvas">
             <i class="mdi mdi-notebook-outline text-light fs-5"></i>
             Notebooks
           </button>
@@ -24,6 +26,7 @@ import Example from '@/components/Example.vue';
         </div>
       </div>
     </div>
+    <OffCanvas />
   </section>
 </template>
 
