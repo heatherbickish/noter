@@ -18,6 +18,10 @@ class EntriesService {
     if (userId != originalEntry.creatorId) throw new Forbidden("YOU CANT EDIT THAT ENTRY, DONT BELOONG TO YOU")
     if (updataData.description) originalEntry.description = updataData.description
     if (updataData.img) originalEntry.img = updataData.img || ''
+    // if (updataData.notebookId && updataData.notebookId != originalEntry.notebookId) {
+    //   const targetNotebook = await dbContext.NoteBooks.findById(updataData.notebookId)
+    //   if (!targetNotebook || targetNotebook.creatorId != userId) throw new Forbidden("NOT ROUND HERE PARTNER, HEH NOT ROUND HERE")
+    // }
     if (updataData.notebookId) originalEntry.notebookId = updataData.notebookId
 
     await originalEntry.save()
@@ -33,10 +37,13 @@ class EntriesService {
   }
 
   async createEntry(entryData) {
+    // const notebook = await dbContext.NoteBooks.findById(entryData.notebookId)
+    // if (notebook == null) throw new Error(`Invalid notebook id:${entryData.notebookId}`)
+    // if (notebook.creatorId != entryData.creatorId) throw new Forbidden("NOT ROUND HERE PARDER, HEH, NOT ROUND HERE")
+
     const entry = await dbContext.Entries.create(entryData)
     await entry.populate('notebook')
 
-    if (entryData.notebookId) throw new Forbidden("YOU CANT ADD AN ENTRY TO A NOTEBOOK THATS NOT YOURS, BUD")
     return entry
   }
 

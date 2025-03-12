@@ -17,6 +17,7 @@ export class EntriesController extends BaseController {
     try {
       const entryData = request.body
       entryData.creatorId = request.userInfo.id
+      // const userId = request.userInfo.id
       const entry = await entriesService.createEntry(entryData)
       response.send(entry)
     } catch (error) {

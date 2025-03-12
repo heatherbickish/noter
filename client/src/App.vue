@@ -8,15 +8,12 @@ import { RouterView } from 'vue-router';
   <header>
     <Navbar />
   </header>
-  <main>
-    <RouterView/>
+  <main class="position-relative">
+    <RouterView />
   </main>
   <footer class=" text-center">
     Made with <i class="mdi mdi-heart text-pink"></i> by CodeWorks
   </footer>
 </template>
 
-<style lang="scss">
-
-
-</style>
+<style lang="scss"></style>
