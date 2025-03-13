@@ -2,6 +2,7 @@
 import { AppState } from "@/AppState.js";
 import { Notebook } from "@/models/Notebook.js";
 import { computed } from "vue";
+import EditNotebookModal from "./EditNotebookModal.vue";
 
 
 defineProps({
@@ -19,7 +20,7 @@ const account = computed(() => AppState.account)
   </div>
   <div class="card-body bg-dark text-light">
     <div class="d-flex align-items-baseline justify-content-between">
-      <p>Created by {{ notebook.creator.name }}</p>
+      <p>Created by {{ account?.name }}</p>
       <div class="title-icon-container">
         <div :style="{ backgroundColor: notebook.color }" class="px-5 py-2 rounded">
           <h4>{{ notebook.title }}</h4>
@@ -35,15 +36,22 @@ const account = computed(() => AppState.account)
       <div class="text-end">
         <p>{{ notebook.entryCount }} Entries</p>
         <div v-if="notebook.creatorId == account?.id">
-          <button class="btn btn-outline-light px-5 text-light me-2">Edit</button>
-          <button class="btn btn-outline-light px-5 text-light me-2">Delete</button>
-          <button class="btn btn-primary px-5 text-light">
+          <button class="btn btn-outline-light px-5 text-light me-2" type="button" title="Edit Notebook"
+            data-bs-toggle="modal" data-bs-target="#EditNotebookModal">
+            Edit
+          </button>
+          <button class="btn btn-outline-light px-5 text-danger me-2" type="button" title="Delete Notebook">
+            Delete
+          </button>
+          <button class="btn btn-primary px-5 text-light" type="button" title="New Notebook" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvas" aria-controls="offcanvas">
             <i class="mdi mdi-plus-box-outline me-1"></i>New
           </button>
         </div>
       </div>
     </div>
   </div>
+  <EditNotebookModal />
 </template>
 
 

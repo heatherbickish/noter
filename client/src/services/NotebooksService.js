@@ -24,6 +24,11 @@ class NotebooksService {
     AppState.notebooks.unshift(createdNotebook)
   }
 
+  async editNotebook(notebookData, notebookId) {
+    const response = await api.put(`api/notebooks/${notebookId}`, notebookData)
+    AppState.activeNotebook = new Notebook(response.data)
+  }
+
 }
 
 export const notesbooksService = new NotebooksService()
