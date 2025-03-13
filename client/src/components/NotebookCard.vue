@@ -21,11 +21,11 @@ const account = computed(() => AppState.account)
     <div class="d-flex align-items-baseline justify-content-between">
       <p>Created by {{ notebook.creator.name }}</p>
       <div class="title-icon-container">
-        <h1><i :class="'mdi ' + notebook.icon" :style="{ color: notebook.color }"></i></h1>
         <div :style="{ backgroundColor: notebook.color }" class="px-5 py-2 rounded">
           <h4>{{ notebook.title }}</h4>
         </div>
       </div>
+      <h1><i :class="'mdi ' + notebook.icon" :style="{ color: notebook.color }"></i></h1>
     </div>
     <div class="flex-container">
       <div>
@@ -63,7 +63,7 @@ const account = computed(() => AppState.account)
 
 .title-icon-container {
   position: absolute;
-  top: 50%;
+  top: 55%;
   right: 0;
   transform: translate(-50%, -50%);
   text-align: center;

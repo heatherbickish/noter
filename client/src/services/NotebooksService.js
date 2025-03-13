@@ -20,7 +20,6 @@ class NotebooksService {
 
   async createNotebook(formData) {
     const response = await api.post('api/notebooks', formData)
-    logger.log('created notebook', response.data)
     const createdNotebook = new Notebook(response.data)
     AppState.notebooks.unshift(createdNotebook)
   }
