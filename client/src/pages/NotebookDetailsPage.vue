@@ -17,6 +17,7 @@ const notebook = computed(() => AppState.activeNotebook)
 
 onMounted(() => {
   getNotebookById()
+  getEntriesByNotebookId()
 })
 
 async function getNotebookById() {
@@ -24,6 +25,16 @@ async function getNotebookById() {
     const notebookId = route.params.notebookId
     await notesbooksService.getNotebookById(notebookId)
   } catch (error) {
+    logger.error(error)
+  }
+}
+
+async function getEntriesByNotebookId() {
+  try {
+    const notebookId = route.params.notebookId
+    await notesbooksService.getEntriesByNotebookId(notebookId)
+  }
+  catch (error) {
     logger.error(error)
   }
 }
@@ -50,7 +61,6 @@ async function getNotebookById() {
                   <div :style="{ backgroundColor: notebook.color }" class="px-5 py-2 rounded">
                     <h4>{{ notebook.title }}</h4>
                   </div>
-
                 </div>
               </div>
               <div class="flex-container">
