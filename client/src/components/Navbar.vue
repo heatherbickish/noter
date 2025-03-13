@@ -1,16 +1,13 @@
 <script setup>
-import { computed } from "vue";
 import Login from './Login.vue';
-import { AppState } from "@/AppState.js";
 
-const account = computed(() => AppState.account)
 
 </script>
 
 <template>
   <nav class="navbar navbar-expand-md">
     <div class="ms-2">
-      <button v-if="account" class="btn bg-warning fw-bold text-light" type="button" data-bs-toggle="offcanvas"
+      <button class="btn bg-warning fw-bold text-light" type="button" data-bs-toggle="offcanvas"
         data-bs-target="#offcanvas" aria-controls="offcanvas">
         <i class="mdi mdi-notebook-outline text-light fs-5"></i>
         Notebooks

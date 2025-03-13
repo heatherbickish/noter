@@ -50,7 +50,7 @@ const account = computed(() => AppState.account)
 <style lang="scss" scoped>
 .entry-img {
   height: 300px;
-  width: 100%;
+  width: 250px;
   object-fit: cover;
   object-position: center;
 }

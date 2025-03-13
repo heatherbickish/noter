@@ -53,7 +53,7 @@ async function getEntriesByNotebookId() {
     <section class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-md-7">
-          <div class="card shadow notebook-card">
+          <div class="card shadow notebook-card mt-5">
             <NotebookCard :notebook="notebook" />
           </div>
         </div>

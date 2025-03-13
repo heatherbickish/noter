@@ -8,8 +8,10 @@ import { computed, watch } from "vue"
 const account = computed(() => AppState.account)
 
 watch(account, () => {
-  getAllMyNotebooks()
-})
+  if (AppState.account != null) {
+    getAllMyNotebooks()
+  }
+}, { immediate: true })
 
 async function getAllMyNotebooks() {
   try {

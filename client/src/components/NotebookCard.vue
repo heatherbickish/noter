@@ -20,7 +20,7 @@ const account = computed(() => AppState.account)
   </div>
   <div class="card-body bg-dark text-light">
     <div class="d-flex align-items-baseline justify-content-between">
-      <p>Created by {{ account?.name }}</p>
+      <p>Created by {{ notebook.creator.name }}</p>
       <div class="title-icon-container">
         <div :style="{ backgroundColor: notebook.color }" class="px-5 py-2 rounded">
           <h4>{{ notebook.title }}</h4>
