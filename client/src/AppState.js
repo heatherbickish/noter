@@ -10,5 +10,7 @@ export const AppState = reactive({
   notebooks: [],
   /** @type {import('./models/Notebook.js').Notebook} user info from the database*/
   activeNotebook: null,
+  /** @type {import('./models/Entry.js').Entry.js[]} user info from the database*/
+  entries: [],
 })
 
