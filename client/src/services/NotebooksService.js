@@ -18,9 +18,11 @@ class NotebooksService {
     AppState.activeNotebook = new Notebook(response.data)
   }
 
-  async getEntriesByNotebookId(notebookId) {
-    const response = await api.get(`api/notebooks/${notebookId}/entries`)
-    AppState.entries = response.data.map(entry => new Entry(entry))
+  async createNotebook(formData) {
+    const response = await api.post('api/notebooks', formData)
+    logger.log('created notebook', response.data)
+    const createdNotebook = new Notebook(response.data)
+    AppState.notebooks.unshift(createdNotebook)
   }
 
 }

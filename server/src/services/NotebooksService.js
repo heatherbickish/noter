@@ -29,7 +29,7 @@ class NotebooksService {
     return notebook
   }
   async getAllMyNotebooks(userId) {
-    const notebooks = await dbContext.NoteBooks.find({ creatorId: userId }).populate('creator', 'name picture').populate('entryCount')
+    const notebooks = await dbContext.NoteBooks.find({ creatorId: userId }).populate('creator', 'name picture').populate('entryCount').sort('-createdAt')
     return notebooks
   }
   async createNotebook(notebookData) {

@@ -37,9 +37,9 @@ class EntriesService {
   }
 
   async createEntry(entryData) {
-    // const notebook = await dbContext.NoteBooks.findById(entryData.notebookId)
+    const notebook = await dbContext.NoteBooks.findById(entryData.notebookId)
     // if (notebook == null) throw new Error(`Invalid notebook id:${entryData.notebookId}`)
-    // if (notebook.creatorId != entryData.creatorId) throw new Forbidden("NOT ROUND HERE PARDER, HEH, NOT ROUND HERE")
+    if (notebook.creatorId != entryData.creatorId) throw new Forbidden("NOT ROUND HERE PARDER, HEH, NOT ROUND HERE")
 
     const entry = await dbContext.Entries.create(entryData)
     await entry.populate('notebook')

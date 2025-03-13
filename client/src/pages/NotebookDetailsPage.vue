@@ -2,6 +2,7 @@
 import { AppState } from "@/AppState.js";
 import EntryCard from "@/components/EntryCard.vue";
 import NotebookCard from "@/components/NotebookCard.vue";
+import { entriesService } from "@/services/EntriesService.js";
 import { notesbooksService } from "@/services/NotebooksService.js";
 import { logger } from "@/utils/Logger.js";
 import { computed, onMounted, watch } from "vue";
@@ -35,7 +36,7 @@ async function getNotebookById() {
 async function getEntriesByNotebookId() {
   try {
     const notebookId = route.params.notebookId
-    await notesbooksService.getEntriesByNotebookId(notebookId)
+    await entriesService.getEntriesByNotebookId(notebookId)
   }
   catch (error) {
     logger.error(error)

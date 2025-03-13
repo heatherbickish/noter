@@ -1,23 +1,32 @@
 <script setup>
 import { AppState } from "@/AppState.js";
+import { notesbooksService } from "@/services/NotebooksService.js";
 import { logger } from "@/utils/Logger.js";
-import { computed, watch } from "vue";
+import { computed, ref } from "vue";
 
 
-// const account = computed(() => AppState.account)
 const notebooks = computed(() => AppState.notebooks)
 
-// watch(account, () => {
-//   getAllMyNotebooks()
-// })
+const editableFormData = ref({
+  title: '',
+  icon: '',
+  color: '',
+  coverImg: ''
+})
 
-// async function getAllMyNotebooks() {
-//   try {
-//     await notesbooksService.getAllMyNotebooks()
-//   } catch (error) {
-//     logger.error(error)
-//   }
-// }
+async function createNotebook() {
+  try {
+    await notesbooksService.createNotebook(editableFormData.value)
+    editableFormData.value = {
+      title: '',
+      icon: '',
+      color: '',
+      coverImg: ''
+    }
+  } catch (error) {
+    logger.error(error)
+  }
+}
 
 </script>
 
@@ -30,24 +39,26 @@ const notebooks = computed(() => AppState.notebooks)
     </div>
     <div class="offcanvas-body">
       <div>
-        <form>
+        <form @submit.prevent="createNotebook()">
           <div class="d-flex gap-2">
             <div class="mb-3">
               <label class="form-label"><em><b>Notebook Title</b></em></label>
-              <input type="text" class="form-control" id="title">
+              <input v-model="editableFormData.title" type="text" class="form-control" id="title" minlength="3"
+                maxlength="25" required>
             </div>
             <div class="mb-3">
               <label class="form-label"><em><b>Icon</b></em></label>
-              <input type="text" class="form-control" id="icon">
+              <input v-model="editableFormData.icon" type="text" class="form-control" id="icon" required>
             </div>
             <div class="mb-3">
               <label class="form-label"><em><b>Color</b></em></label>
-              <input type="color" class="form-control h-50" id="color">
+              <input v-model="editableFormData.color" type="color" class="form-control h-50" id="color" required>
             </div>
           </div>
           <div class="mb-3">
             <label class="form-label"><em><b>Cover Image</b></em></label>
-            <input type="url" class="form-control" id="coverImg">
+            <input v-model="editableFormData.coverImg" type="url" class="form-control" id="coverImg" maxlength="500"
+              required>
           </div>
           <div class="text-end">
             <button class="btn btn-danger" type="submit" title="Create Notebook">
