@@ -9,6 +9,7 @@ import { useRoute } from "vue-router";
 const route = useRoute()
 const account = computed(() => AppState.account)
 const notebook = computed(() => AppState.activeNotebook)
+const entries = computed(() => AppState.entries)
 
 // watch(route, () => {
 //   getNotebookById()
@@ -87,26 +88,20 @@ async function getEntriesByNotebookId() {
       <!-- SECTION Entries -->
       <div class="row justify-content-center">
         <div class="col-md-8">
-          <div class="card shadow entry-card mt-5 bg-light">
+          <div v-for="entry in entries" :key="entry.id" class="card shadow entry-card mt-5 bg-light">
             <div class="d-flex">
-              <div class="card-img p-2">
-                <img
-                  src="https://images.unsplash.com/photo-1542359649-31e03cd4d909?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  alt="" class="entry-img">
+              <div class="card-img p-2 mt-2">
+                <img :src="entry.img" alt="" class="entry-img">
               </div>
               <div class="card-body">
                 <div class="border bg-white p-2">
-                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas ullam obcaecati accusantium,
-                    optio
-                    voluptatem laudantium non minus. Sunt illo dolore sit error, incidunt unde eum minus quisquam
-                    dolores
-                    quam hic.</p>
+                  <p>{{ entry.description }}</p>
                 </div>
               </div>
             </div>
             <div class="d-flex align-items-baseline justify-content-center">
               <div class="me-5">
-                <p>last updated Mon 12/14/22</p>
+                <p>last updated {{ entry.updatedAt.toLocaleDateString() }}</p>
               </div>
               <div class="dot-button me-3 btn-group">
                 <button class="btn btn-lg bg-white py-0 dropdown-toggle" type="button" data-bs-toggle="dropdown">
@@ -153,8 +148,8 @@ async function getEntriesByNotebookId() {
 }
 
 .entry-img {
-  height: auto;
-  width: 100%;
+  height: 200px;
+  width: 200px;
   object-fit: cover;
   object-position: center;
 }
