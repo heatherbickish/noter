@@ -1,10 +1,14 @@
 <script setup>
+import { AppState } from "@/AppState.js";
 import { Entry } from "@/models/Entry.js";
+import { computed } from "vue";
 
 
 defineProps({
   entry: { type: Entry, required: true }
 })
+
+const account = computed(() => AppState.account)
 
 </script>
 
@@ -27,10 +31,10 @@ defineProps({
     <div class="ms-3">
       <input type="url" id="img" placeholder="Image URl..." class="form-control ">
     </div>
-    <div>
+    <div class="me-2">
       <p>last updated {{ entry.updatedAt.toLocaleDateString() }}</p>
     </div>
-    <div class="dot-button me-3 btn-group">
+    <div v-if="entry.creatorId == account?.id" class="dot-button me-3 btn-group">
       <button class="btn btn-lg bg-white py-0 dropdown-toggle" type="button" data-bs-toggle="dropdown">
         <i class="mdi mdi-dots-horizontal"></i>
       </button>
