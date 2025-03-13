@@ -49,7 +49,7 @@ async function getEntriesByNotebookId() {
     <!-- SECTION Notebook details -->
     <section class="container-fluid">
       <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-7">
           <div class="card shadow notebook-card">
             <div class="card-img">
               <img :src="notebook.coverImg" alt="" class="notebook-img">
@@ -87,20 +87,26 @@ async function getEntriesByNotebookId() {
 
       <!-- SECTION Entries -->
       <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div v-for="entry in entries" :key="entry.id" class="card shadow entry-card mt-5 bg-light">
+        <div class="col-md-7">
+          <div v-for="entry in entries" :key="entry.id" class="card shadow entry-card mt-5 bg-light border border-dark">
             <div class="d-flex">
-              <div class="card-img p-2 mt-2">
-                <img :src="entry.img" alt="" class="entry-img">
+              <div class="card-img p-2 mt-2 ms-2">
+                <img :src="entry.img" alt="" class="entry-img border border-dark rounded">
               </div>
               <div class="card-body">
-                <div class="border bg-white p-2">
+                <div class="border bg-white rounded p-2">
                   <p>{{ entry.description }}</p>
+                </div>
+                <div class="mt-2 text-end">
+                  <button class="btn btn-outline-success">Save Changes</button>
                 </div>
               </div>
             </div>
-            <div class="d-flex align-items-baseline justify-content-center">
-              <div class="me-5">
+            <div class="d-flex align-items-baseline justify-content-between">
+              <div class="ms-3">
+                <input type="url" id="img" placeholder="Image URl..." class="form-control ">
+              </div>
+              <div class="">
                 <p>last updated {{ entry.updatedAt.toLocaleDateString() }}</p>
               </div>
               <div class="dot-button me-3 btn-group">
@@ -148,18 +154,17 @@ async function getEntriesByNotebookId() {
 }
 
 .entry-img {
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 270px;
   object-fit: cover;
   object-position: center;
 }
 
-.entry-card {
-  position: relative;
-}
+// .entry-card {
+//   position: relative;
+// }
 
-.dot-button {
-  position: absolute;
-  right: 0;
-}
-</style>
+// .dot-button {
+//   position: absolute;
+//   right: 0;
+// }</style>

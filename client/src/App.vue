@@ -10,13 +10,13 @@ import OffCanvas from "./components/OffCanvas.vue";
     <Navbar />
   </header>
   <main class="position-relative">
-    <div>
+    <!-- <div>
       <button class="btn bg-warning fw-bold text-light py-2" type="button" data-bs-toggle="offcanvas"
         data-bs-target="#offcanvas" aria-controls="offcanvas">
         <i class="mdi mdi-notebook-outline text-light fs-5"></i>
         Notebooks
       </button>
-    </div>
+    </div> -->
     <RouterView />
     <OffCanvas />
   </main>
