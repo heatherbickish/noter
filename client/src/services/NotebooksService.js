@@ -20,7 +20,6 @@ class NotebooksService {
 
   async getEntriesByNotebookId(notebookId) {
     const response = await api.get(`api/notebooks/${notebookId}/entries`)
-    logger.log('got entries for notebook', response.data)
     AppState.entries = response.data.map(entry => new Entry(entry))
   }
 
