@@ -12,8 +12,9 @@ class NotebooksService {
   }
 
   async getNotebookById(notebookId) {
+    AppState.activeNotebook = null
     const response = await api.get(`api/notebooks/${notebookId}`)
-    logger.log('Got notebook by id', response.data)
+    logger.log('got notebook by id', response.data)
     AppState.activeNotebook = new Notebook(response.data)
   }
 }

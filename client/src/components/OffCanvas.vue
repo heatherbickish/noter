@@ -1,24 +1,23 @@
 <script setup>
 import { AppState } from "@/AppState.js";
-import { notesbooksService } from "@/services/NotebooksService.js";
 import { logger } from "@/utils/Logger.js";
 import { computed, watch } from "vue";
 
 
-const account = computed(() => AppState.account)
+// const account = computed(() => AppState.account)
 const notebooks = computed(() => AppState.notebooks)
 
-watch(account, () => {
-  getAllMyNotebooks()
-})
+// watch(account, () => {
+//   getAllMyNotebooks()
+// })
 
-async function getAllMyNotebooks() {
-  try {
-    await notesbooksService.getAllMyNotebooks()
-  } catch (error) {
-    logger.error(error)
-  }
-}
+// async function getAllMyNotebooks() {
+//   try {
+//     await notesbooksService.getAllMyNotebooks()
+//   } catch (error) {
+//     logger.error(error)
+//   }
+// }
 
 </script>
 

@@ -2,7 +2,7 @@
 import { AppState } from "@/AppState.js";
 import { notesbooksService } from "@/services/NotebooksService.js";
 import { logger } from "@/utils/Logger.js";
-import { computed, watch } from "vue";
+import { computed, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 
 
@@ -10,10 +10,14 @@ const route = useRoute()
 const account = computed(() => AppState.account)
 const notebook = computed(() => AppState.activeNotebook)
 
-watch(route, () => {
+// watch(route, () => {
+//   getNotebookById()
+// })
+
+
+onMounted(() => {
   getNotebookById()
 })
-
 
 async function getNotebookById() {
   try {
@@ -29,10 +33,12 @@ async function getNotebookById() {
 
 <template>
   <div v-if="notebook">
+
+    <!-- SECTION Notebook details -->
     <section class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-md-8">
-          <div class="card shadow">
+          <div class="card shadow notebook-card">
             <div class="card-img">
               <img :src="notebook.coverImg" alt="" class="notebook-img">
             </div>
@@ -67,6 +73,44 @@ async function getNotebookById() {
           </div>
         </div>
       </div>
+
+      <!-- SECTION Entries -->
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card shadow entry-card mt-5 bg-light">
+            <div class="d-flex">
+              <div class="card-img p-2">
+                <img
+                  src="https://images.unsplash.com/photo-1542359649-31e03cd4d909?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="" class="entry-img">
+              </div>
+              <div class="card-body">
+                <div class="border bg-white p-2">
+                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas ullam obcaecati accusantium,
+                    optio
+                    voluptatem laudantium non minus. Sunt illo dolore sit error, incidunt unde eum minus quisquam
+                    dolores
+                    quam hic.</p>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex align-items-baseline justify-content-center">
+              <div class="me-5">
+                <p>last updated Mon 12/14/22</p>
+              </div>
+              <div class="dot-button me-3 btn-group">
+                <button class="btn btn-lg bg-white py-0 dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                  <i class="mdi mdi-dots-horizontal"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><button class="dropdown-item" type="button">Edit</button></li>
+                  <li><button class="dropdown-item" type="button">Delete</button></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </div>
 </template>
@@ -86,7 +130,7 @@ async function getNotebookById() {
   justify-content: space-between;
 }
 
-.card {
+.notebook-card {
   position: relative;
 }
 
@@ -96,5 +140,21 @@ async function getNotebookById() {
   right: 0;
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+.entry-img {
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.entry-card {
+  position: relative;
+}
+
+.dot-button {
+  position: absolute;
+  right: 0;
 }
 </style>

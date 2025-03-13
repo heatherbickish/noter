@@ -1,6 +1,22 @@
 <script setup>
+// import { AppState } from "@/AppState.js"
+// import { notesbooksService } from "@/services/NotebooksService.js"
+// import { computed, watch } from "vue"
 
 
+// const account = computed(() => AppState.account)
+
+// watch(account, () => {
+//   getAllMyNotebooks()
+// })
+
+// async function getAllMyNotebooks() {
+//   try {
+//     await notesbooksService.getAllMyNotebooks()
+//   } catch (error) {
+//     logger.error(error)
+//   }
+// }
 
 </script>
 
