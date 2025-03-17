@@ -31,7 +31,6 @@ class NotebooksService {
 
   async deleteNotebook(notebookId) {
     const response = await api.delete(`api/notebooks/${notebookId}`)
-    logger.log('deleted notebook', response.data)
     const notebookIndex = AppState.notebooks.findIndex(notebook => notebook.id == notebookId)
     AppState.notebooks.splice(notebookIndex, 1)
   }

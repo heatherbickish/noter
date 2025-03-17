@@ -7,6 +7,7 @@ import { useRoute, useRouter } from "vue-router";
 import { Pop } from "@/utils/Pop.js";
 import { notesbooksService } from "@/services/NotebooksService.js";
 import { logger } from "@/utils/Logger.js";
+import AddEntryForm from "./AddEntryForm.vue";
 
 
 const props = defineProps({
@@ -62,13 +63,15 @@ async function deleteNotebook() {
             title="Delete Notebook">
             Delete
           </button>
-          <button class="btn btn-primary px-5 text-light" type="button" title="New Notebook">
+          <button class="btn btn-primary px-5 text-light" type="button" title="New Entry" data-bs-toggle="modal"
+            data-bs-target="#addEntryFormModal">
             <i class="mdi mdi-plus-box-outline me-1"></i>New
           </button>
         </div>
       </div>
     </div>
   </div>
+  <AddEntryForm />
   <EditNotebookModal />
 </template>
 
