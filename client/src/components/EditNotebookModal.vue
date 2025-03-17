@@ -7,6 +7,7 @@ import { useRoute } from "vue-router";
 
 
 const route = useRoute()
+const previewCoverImg = ref('')
 
 const editableNotebookData = ref({
   title: '',
@@ -39,8 +40,8 @@ async function editNotebook() {
         </div>
         <div class="modal-body">
           <form @submit.prevent="editNotebook()">
-            <div>
-              <img src="" alt="">
+            <div v-if="previewCoverImg">
+              <img :src="previewCoverImg" alt="">
               <p>Image Preview</p>
             </div>
             <div class="d-flex gap-2">
