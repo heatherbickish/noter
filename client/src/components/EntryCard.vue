@@ -18,7 +18,7 @@ const account = computed(() => AppState.account)
     <div class="card-img p-2 mt-2 ms-2">
       <img :src="entry.img" alt="" class="entry-img border border-dark rounded">
     </div>
-    <div class="card-body">
+    <div class="card-body" style="width: 100%;">
       <div class="border bg-white rounded p-2">
         <p>{{ entry.description }}</p>
       </div>

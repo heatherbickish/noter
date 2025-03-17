@@ -32,7 +32,7 @@ class EntriesService {
     return entries
   }
   async getMyEntries(userId) {
-    const entries = await dbContext.Entries.find({ creatorId: userId }).populate('notebook')
+    const entries = await dbContext.Entries.find({ creatorId: userId }).populate('notebook').sort('-createdAt')
     return entries
   }
 
