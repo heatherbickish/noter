@@ -3,13 +3,31 @@ import { AppState } from "@/AppState.js";
 import { Notebook } from "@/models/Notebook.js";
 import { computed } from "vue";
 import EditNotebookModal from "./EditNotebookModal.vue";
+import { useRoute, useRouter } from "vue-router";
+import { Pop } from "@/utils/Pop.js";
+import { notesbooksService } from "@/services/NotebooksService.js";
+import { logger } from "@/utils/Logger.js";
 
 
-defineProps({
+const props = defineProps({
   notebook: { type: Notebook, required: true }
 })
 
 const account = computed(() => AppState.account)
+const route = useRoute()
+const router = useRouter()
+
+async function deleteNotebook() {
+  try {
+    const yes = await Pop.confirm(`Are you sure you want to delete the ${props.notebook.title} notebook?`)
+    if (!yes) return
+    const notebookId = route.params.notebookId
+    await notesbooksService.deleteNotebook(notebookId)
+    router.push({ name: 'Account' })
+  } catch (error) {
+    logger.error(error)
+  }
+}
 
 </script>
 
@@ -40,11 +58,11 @@ const account = computed(() => AppState.account)
             data-bs-toggle="modal" data-bs-target="#EditNotebookModal">
             Edit
           </button>
-          <button class="btn btn-outline-light px-5 text-danger me-2" type="button" title="Delete Notebook">
+          <button @click="deleteNotebook()" class="btn btn-outline-light px-5 text-danger me-2" type="button"
+            title="Delete Notebook">
             Delete
           </button>
-          <button class="btn btn-primary px-5 text-light" type="button" title="New Notebook" data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvas" aria-controls="offcanvas">
+          <button class="btn btn-primary px-5 text-light" type="button" title="New Notebook">
             <i class="mdi mdi-plus-box-outline me-1"></i>New
           </button>
         </div>
