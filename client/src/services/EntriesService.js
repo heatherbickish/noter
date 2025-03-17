@@ -12,9 +12,14 @@ class EntriesService {
 
   async createEntry(entryData) {
     const response = await api.post('api/entries', entryData)
-    logger.log('created entry', response.data)
     const createdEntry = new Entry(response.data)
     AppState.entries.unshift(createdEntry)
+  }
+
+  async editEntry(entryData, entryId) {
+    const response = await api.put(`api/entries/${entryId}`, entryData)
+    logger.log('edited entry', response.data)
+    AppState.entries = new Entry(response.data)
   }
 
 }
