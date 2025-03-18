@@ -3,6 +3,7 @@ import { AppState } from "@/AppState.js";
 import { Entry } from "@/models/Entry.js";
 import { entriesService } from "@/services/EntriesService.js";
 import { logger } from "@/utils/Logger.js";
+import { Pop } from "@/utils/Pop.js";
 import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 
@@ -36,6 +37,16 @@ async function editEntry(entryId) {
   }
 }
 
+async function deleteEntry(entryId) {
+  try {
+    const yes = await Pop.confirm(`Are you sure you want to delete this entry??`)
+    if (!yes) return
+    await entriesService.deleteEntry(entryId)
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
 </script>
 
 
@@ -56,7 +67,7 @@ async function editEntry(entryId) {
         <div class="mt-2">
           <select v-model="editableEntryData.notebookId" v-if="editMode" class="form-select" role="button"
             aria-label="Select notebook">
-            <option selected value="" disabled>Select a notebook</option>
+            <option selected value="" disabled>Move to notebook</option>
             <option v-for="notebook in myNotebooks" :key="notebook.id" :value="notebook.id" class="text-capitalize"
               role="button">{{ notebook.title }}</option>
           </select>
@@ -90,7 +101,8 @@ async function editEntry(entryId) {
         <ul class="dropdown-menu dropdown-menu-end">
           <li><button @click="editMode = !editMode" class="dropdown-item" type="submit" title="Edit Entry">Edit</button>
           </li>
-          <li><button class="dropdown-item" type="button" title="Delete Entry">Delete</button></li>
+          <li><button @click="deleteEntry(entry.id)" class="dropdown-item text-danger" type="button"
+              title="Delete Entry">Delete</button></li>
         </ul>
       </div>
     </div>

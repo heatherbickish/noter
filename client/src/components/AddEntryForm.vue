@@ -89,7 +89,7 @@ async function createEntry() {
                   role="button">{{ notebook.title }}</option>
               </select>
             </div>
-            <button type="submit" class="btn btn-outline-success">Save changes</button>
+            <button type="submit" class="btn btn-outline-success">Save</button>
           </div>
         </form>
         <!-- <div class="modal-footer">
