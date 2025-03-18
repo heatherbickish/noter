@@ -14,10 +14,6 @@ const account = computed(() => AppState.account)
 const notebook = computed(() => AppState.activeNotebook)
 const entries = computed(() => AppState.entries)
 
-// watch(route, () => {
-//   getNotebookById()
-// })
-
 
 onMounted(() => {
   getNotebookById()

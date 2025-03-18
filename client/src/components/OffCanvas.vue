@@ -72,9 +72,10 @@ async function createNotebook() {
                 :style="{ color: notebook.color }"></i>{{
                   notebook.title }}</h5>
           </router-link>
-          <p><span>{{ notebook.entryCount }}</span> Entries <i
-              class="mdi mdi-book-open-blank-variant-outline fw-bold fs-5"></i><i
-              class="mdi mdi-arrow-right-thin fs-5"></i>
+          <p><span>{{ notebook.entryCount }}</span>
+            Entries
+            <i class="mdi mdi-book-open-blank-variant-outline fw-bold fs-5"></i>
+            <i class="mdi mdi-arrow-right-thin fs-5"></i>
           </p>
         </div>
       </div>

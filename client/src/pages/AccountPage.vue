@@ -8,19 +8,19 @@ import { notesbooksService } from "@/services/NotebooksService.js";
 const account = computed(() => AppState.account)
 const notebooks = computed(() => AppState.notebooks)
 
-// watch(account, () => {
-//   if (AppState.account != null) {
-//     getMyNotebooks()
-//   }
-// }, { immediate: true })
+watch(account, () => {
+  if (AppState.account != null) {
+    getMyNotebooks()
+  }
+}, { immediate: true })
 
-// async function getMyNotebooks() {
-//   try {
-//     await notesbooksService.getAllMyNotebooks()
-//   } catch (error) {
-//     logger.error(error)
-//   }
-// }
+async function getMyNotebooks() {
+  try {
+    await notesbooksService.getAllMyNotebooks()
+  } catch (error) {
+    logger.error(error)
+  }
+}
 
 </script>
 
