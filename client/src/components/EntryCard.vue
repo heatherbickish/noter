@@ -14,17 +14,22 @@ defineProps({
 const editableEntryData = ref({
   description: '',
   img: '',
-  // notebookId: route.params.notebookId
+  notebookId: ''
 })
 
 const route = useRoute()
 const editMode = ref(false)
 const account = computed(() => AppState.account)
+const myNotebooks = computed(() => AppState.notebooks)
 
 async function editEntry(entryId) {
   try {
     await entriesService.editEntry(editableEntryData.value, entryId)
-    editableEntryData.value = { description: '', img: '' }
+    editableEntryData.value = {
+      description: '',
+      img: '',
+      notebookId: ''
+    }
     editMode.value = false
   } catch (error) {
     logger.error(error)
@@ -47,6 +52,14 @@ async function editEntry(entryId) {
         <div>
           <textarea v-model="editableEntryData.description" v-if="editMode" id="description" class="form-control"
             maxlength="2000"></textarea>
+        </div>
+        <div class="mt-2">
+          <select v-model="editableEntryData.notebookId" v-if="editMode" class="form-select" role="button"
+            aria-label="Select notebook">
+            <option selected value="" disabled>Select a notebook</option>
+            <option v-for="notebook in myNotebooks" :key="notebook.id" :value="notebook.id" class="text-capitalize"
+              role="button">{{ notebook.title }}</option>
+          </select>
         </div>
         <div class="d-flex align-items-center justify-content-between">
           <div class="mt-2">
