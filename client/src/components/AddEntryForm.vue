@@ -4,11 +4,13 @@ import { entriesService } from "@/services/EntriesService.js";
 import { notesbooksService } from "@/services/NotebooksService.js";
 import { logger } from "@/utils/Logger.js";
 import { Modal } from "bootstrap/dist/js/bootstrap.bundle.js";
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
+import { useRouter } from "vue-router";
 
 const account = computed(() => AppState.account)
 const myNotebooks = computed(() => AppState.notebooks)
 const previewImg = ref('')
+// const router = useRouter()
 
 const editableEntryData = ref({
   description: '',
@@ -16,11 +18,17 @@ const editableEntryData = ref({
   notebookId: ''
 })
 
-onMounted(() => {
-  // if (AppState.account != null) {
-  // }
-  getAllMyNotebooks()
+watch(account, () => {
+  if (AppState.account != null) {
+    getAllMyNotebooks()
+  }
 })
+
+// onMounted(() => {
+//   // if (AppState.account != null) {
+//   // }
+//   getAllMyNotebooks()
+// })
 
 async function getAllMyNotebooks() {
   try {
@@ -32,7 +40,6 @@ async function getAllMyNotebooks() {
 
 async function createEntry() {
   try {
-    // editableEntryData.value.notebookId = myNotebooks.value.id
     await entriesService.createEntry(editableEntryData.value)
     editableEntryData.value = {
       description: '',
@@ -40,6 +47,7 @@ async function createEntry() {
       notebookId: ''
     }
     Modal.getInstance('#addEntryFormModal').hide()
+    // router.push({ name: 'Notebook Details', params: { notebookId: myNotebooks.value.id } })
   } catch (error) {
     logger.error(error)
   }

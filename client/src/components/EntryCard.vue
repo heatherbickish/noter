@@ -48,26 +48,36 @@ async function editEntry(entryId) {
           <textarea v-model="editableEntryData.description" v-if="editMode" id="description" class="form-control"
             maxlength="2000"></textarea>
         </div>
-        <div class="mt-2 text-end">
-          <button @click="editEntry(entry.id)" v-if="editMode" class="btn btn-outline-success" type="button">Save
-            Changes</button>
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="mt-2">
+            <button @click="editMode = !editMode" v-if="editMode" class="btn btn-secondary" type="button"
+              title="Cancel Changes">Cancel</button>
+          </div>
+          <div class="mt-2">
+            <button @click="editEntry(entry.id)" v-if="editMode" class="btn btn-outline-success" type="button"
+              title="Save Changes">Save
+              Changes</button>
+          </div>
         </div>
       </div>
     </div>
     <div class="d-flex align-items-baseline justify-content-between">
       <div class="ms-3">
-        <input v-model="editableEntryData.img" type="url" id="img" placeholder="Image URl..." class="form-control ">
+        <input v-model="editableEntryData.img" v-if="editMode" type="url" id="img" placeholder="Image URl..."
+          class="form-control ">
       </div>
       <div class="me-2">
         <p>last updated {{ entry.updatedAt.toLocaleDateString() }}</p>
       </div>
       <div v-if="entry.creatorId == account?.id" class="dot-button me-3 btn-group">
-        <button class="btn btn-lg bg-white py-0 dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        <button class="btn btn-lg bg-white py-0 dropdown-toggle" type="button" title="Dropdown Menu"
+          data-bs-toggle="dropdown">
           <i class="mdi mdi-dots-horizontal"></i>
         </button>
         <ul class="dropdown-menu dropdown-menu-end">
-          <li><button @click="editMode = !editMode" class="dropdown-item" type="submit">Edit</button></li>
-          <li><button class="dropdown-item" type="button">Delete</button></li>
+          <li><button @click="editMode = !editMode" class="dropdown-item" type="submit" title="Edit Entry">Edit</button>
+          </li>
+          <li><button class="dropdown-item" type="button" title="Delete Entry">Delete</button></li>
         </ul>
       </div>
     </div>
