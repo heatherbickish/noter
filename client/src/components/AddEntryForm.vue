@@ -82,19 +82,16 @@ async function createEntry() {
                 placeholder="Image Url">
             </div>
             <div class="mb-1">
-              <select v-model="editableEntryData.notebookId" class="form-select" role="button"
+              <select v-model="editableEntryData.notebookId" class="form-select" role="button" title="Dropdown Menu"
                 aria-label="Select notebook">
                 <option selected value="" disabled>Select a notebook</option>
                 <option v-for="notebook in myNotebooks" :key="notebook.id" :value="notebook.id" class="text-capitalize"
-                  role="button">{{ notebook.title }}</option>
+                  :title="notebook.title" role="button">{{ notebook.title }}</option>
               </select>
             </div>
-            <button type="submit" class="btn btn-outline-success">Save</button>
+            <button type="submit" class="btn btn-outline-success" title="Create Entry">Create Entry</button>
           </div>
         </form>
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div> -->
       </div>
     </div>
   </div>

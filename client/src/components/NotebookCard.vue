@@ -41,9 +41,11 @@ async function deleteNotebook() {
     <div class="d-flex align-items-baseline justify-content-between">
       <p>Created by {{ notebook.creator.name }}</p>
       <div class="title-icon-container">
-        <div :style="{ backgroundColor: notebook.color }" class="px-5 py-2 rounded">
-          <h4>{{ notebook.title }}</h4>
-        </div>
+        <router-link :to="{ name: 'Notebook Details', params: { notebookId: notebook.id } }">
+          <div :style="{ backgroundColor: notebook.color }" class="px-5 py-2 rounded">
+            <h4 class="text-white">{{ notebook.title }}</h4>
+          </div>
+        </router-link>
       </div>
       <h1><i :class="'mdi ' + notebook.icon" :style="{ color: notebook.color }"></i></h1>
     </div>
@@ -77,6 +79,10 @@ async function deleteNotebook() {
 
 
 <style lang="scss" scoped>
+a {
+  text-decoration: none;
+}
+
 .notebook-img {
   height: 200px;
   width: 100%;
